@@ -6,7 +6,13 @@ var path = require("path");
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = 3002;
+var PORT = process.event.PORT ||3002;
+
+app.listen(PORT, function(){
+  app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "view.html"));
+  });
+})
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
